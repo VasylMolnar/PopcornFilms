@@ -37,6 +37,7 @@ body {
   font-family: $fontRoboto;
   color: $colorp;
   letter-spacing: 0.03em;
+  background-color: $rootColor;
 }
 
 img {
@@ -63,18 +64,18 @@ img {
   letter-spacing: 0.03em;
 
   font-size: 17px;
-  text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  color: $texcolor;
+  color: $backgroundbutton;
+  text-transform: uppercase;
 
   @media screen and (min-width: $tablet) {
-    padding-top: 0px;
+    padding-top: 50px;
     padding-bottom: 70px;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   @media screen and (min-width: $desktop) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }

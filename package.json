@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.7",
+    "debounce": "^1.2.1",
     "formik": "^2.2.9",
     "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
