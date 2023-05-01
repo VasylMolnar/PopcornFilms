@@ -1,0 +1,57 @@
+.login {
+  margin-top: 100px;
+
+  .container {
+    @media screen and (min-width: $tablet) {
+      width: 550px;
+    }
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 900;
+    padding-bottom: 30px;
+    text-align: center;
+    color: #fff;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 24px;
+    }
+  }
+
+  .label {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 340px;
+    height: 40px;
+    border-radius: 20px;
+
+    border: 1px solid rgba(33, 33, 33, 0.2);
+    padding-left: 40px;
+    outline: none;
+
+    &:focus {
+      border: 1px solid $background;
+    }
+
+    @media screen and (min-width: $tablet) {
+      width: 510px;
+      height: 40px;
+    }
+  }
+
+  .btn {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    width: 170px;
+    height: 40px;
+
+    &:hover {
+      border: 1px solid #fff;
+    }
+  }
+}

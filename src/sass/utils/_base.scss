@@ -53,7 +53,11 @@ img {
 }
 
 .home,
-.missing {
+.missing,
+.chosen,
+.categories,
+.login,
+.register {
   flex-grow: 1;
 }
 

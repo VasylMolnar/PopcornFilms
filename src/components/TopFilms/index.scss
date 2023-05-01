@@ -1,0 +1,42 @@
+.topFilms {
+  .title {
+    text-align: center;
+
+    @media screen and (min-width: $tablet) {
+      text-align: left;
+    }
+  }
+
+  .ant-card:hover {
+    transform: scale(1.05);
+    border: 3px solid #c6343e;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    @media screen and (min-width: $tablet) {
+      justify-content: start;
+    }
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .rating {
+      width: 65px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: #c6343e;
+      color: #fff;
+      border-radius: 20px;
+    }
+  }
+}

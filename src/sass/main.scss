@@ -8,6 +8,9 @@
 @import '../components/Footer/index.scss';
 @import '../components/UI/Nav/index.scss';
 @import '../components/Search/index.scss';
+@import '../components/TopFilms/index.scss';
 
 /*Pages style*/
 @import './pages/missing';
+@import './pages/register';
+@import './pages/login';

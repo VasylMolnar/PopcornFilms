@@ -1,5 +1,7 @@
 import { React, useState } from 'react';
 import Search from '../components/Search/Search';
+import TopFilms from '../components/TopFilms/TopFilms';
+import TopSerials from '../components/TopSerials/TopSerials';
 
 const Home = () => {
   //sellect data from server
@@ -10,7 +12,11 @@ const Home = () => {
       <div className="container">
         <Search setSearch={setSearch} />
 
-        <h1 className="title">Топ фільмів</h1>
+        {/* Top Films */}
+        <TopFilms />
+
+        {/* Top Serials */}
+        <TopSerials />
       </div>
     </main>
   );

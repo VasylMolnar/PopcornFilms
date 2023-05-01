@@ -1,7 +1,13 @@
 import React from 'react';
 
 const Chosen = () => {
-  return <div></div>;
+  return (
+    <main className="section chosen">
+      <div className="container">
+        <h1>Chosen</h1>
+      </div>
+    </main>
+  );
 };
 
 export default Chosen;

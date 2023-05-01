@@ -34,7 +34,7 @@ const Nav = ({ openMenu }) => {
         </li>
 
         <li className="item">
-          <NavLink to="/enter" className="nav__link enter">
+          <NavLink to="/login" className="nav__link enter">
             Вхід
           </NavLink>
         </li>
