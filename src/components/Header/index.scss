@@ -1,0 +1,62 @@
+.header {
+  background-color: $rootColor;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  border-bottom: 1px solid $colorp;
+  position: relative;
+
+  @media screen and (min-width: $tablet) {
+    height: 80px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: $tablet) {
+      justify-content: space-between;
+    }
+  }
+
+  .logo {
+    display: block;
+    font-family: Raleway, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.16;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    color: $colorwhite;
+    margin-left: 20px;
+
+    span {
+      color: $background;
+    }
+
+    @media screen and (min-width: $tablet) {
+      margin-right: 50px;
+    }
+  }
+
+  .menu-button {
+    display: block;
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      color: $background;
+    }
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+}
