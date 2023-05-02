@@ -1,6 +1,8 @@
 import React from 'react';
-import { FcDislike, FcLike, FcRating, FcBookmark } from 'react-icons/fc';
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 const DescriptionFilm = () => {
   return (
     <section className="section description_film">
@@ -18,16 +20,16 @@ const DescriptionFilm = () => {
 
         <div className="reactions">
           <div className="iconBorder">
-            <FcBookmark className="icon" style={{ color: 'green' }} />
+            <FavoriteIcon className="icon" />
           </div>
           <div className="iconBorder">
-            <FcLike className="icon" />
+            <ThumbUpIcon className="icon" />
           </div>
           <div className="iconBorder">
-            <FcDislike className="icon" />
+            <ThumbDownAltIcon className="icon" />
           </div>
           <div className="iconBorder">
-            <FcRating className="icon" />
+            <BookmarkIcon className="icon" />
           </div>
         </div>
 
