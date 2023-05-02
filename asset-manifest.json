@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/PopcornFilms/static/css/main.e7393479.css",
-    "main.js": "/PopcornFilms/static/js/main.e31024d1.js",
+    "main.css": "/PopcornFilms/static/css/main.0508e4af.css",
+    "main.js": "/PopcornFilms/static/js/main.506f6219.js",
     "static/media/Igor-480.jpg": "/PopcornFilms/static/media/Igor-480.20baa7dca2a5a81dc3b7.jpg",
     "static/media/images-3.jpg": "/PopcornFilms/static/media/images-3.432347c8a5eac64d3512.jpg",
     "static/media/images-1.jpg": "/PopcornFilms/static/media/images-1.bfedf0a374d7498ad00e.jpg",
     "static/media/images.jpg": "/PopcornFilms/static/media/images.8306a28325a4b4b41d39.jpg",
     "static/media/images-2.jpg": "/PopcornFilms/static/media/images-2.547ce4db1da583c7231b.jpg",
     "index.html": "/PopcornFilms/index.html",
-    "main.e7393479.css.map": "/PopcornFilms/static/css/main.e7393479.css.map",
-    "main.e31024d1.js.map": "/PopcornFilms/static/js/main.e31024d1.js.map"
+    "main.0508e4af.css.map": "/PopcornFilms/static/css/main.0508e4af.css.map",
+    "main.506f6219.js.map": "/PopcornFilms/static/js/main.506f6219.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7393479.css",
-    "static/js/main.e31024d1.js"
+    "static/css/main.0508e4af.css",
+    "static/js/main.506f6219.js"
   ]
 }
