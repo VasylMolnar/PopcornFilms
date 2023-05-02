@@ -9,6 +9,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Report, Loading, Notify } from 'notiflix';
 import allowedRoles from '../../utils/roles_list';
+import FavoriteMovies from '../../components/FavoriteMovies/FavoriteMovies';
 
 const UserPage = () => {
   const [canUpdate, setCanUpdate] = useState(false);
@@ -27,6 +28,8 @@ const UserPage = () => {
     email: 'test@gmail.com',
     password: '*************',
   };
+
+  const a = [1, 2, 3, 4, 5, 6, 7]; //test only
 
   return (
     <main className="section userPage">
@@ -155,6 +158,26 @@ const UserPage = () => {
                   </form>
                 )}
               </Formik>
+            </div>
+          </div>
+
+          <div className="favorite_movies">
+            <h1 className="title">Вподобанні фільми </h1>
+
+            <div className="content">
+              {a.map((index, item) => (
+                <FavoriteMovies key={index} />
+              ))}
+            </div>
+          </div>
+
+          <div className="view_later">
+            <h1 className="title">Переглянути пізніше </h1>
+
+            <div className="content">
+              {a.map((index, item) => (
+                <FavoriteMovies key={index} />
+              ))}
             </div>
           </div>
         </div>
