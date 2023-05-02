@@ -3,8 +3,10 @@
     bottom: -52px;
   }
 
-  .slick-slide[data-index] {
-    width: 230px !important;
+  @media screen and (min-width: $tablet) {
+    .slick-slide[data-index] {
+      width: 230px !important;
+    }
   }
 
   .card_img {

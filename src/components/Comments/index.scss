@@ -1,0 +1,49 @@
+.comment_List {
+  .comment {
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (min-width: $tablet) {
+      flex-direction: row;
+      padding: 30px;
+    }
+
+    .card_img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 30px 0px;
+
+      @media screen and (min-width: $tablet) {
+        margin: 0px;
+        margin-right: 30px;
+      }
+    }
+
+    .content {
+      width: 90%;
+      color: #fff;
+
+      .icons {
+        margin: 30px 0px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .icon {
+          &:hover {
+            color: red;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

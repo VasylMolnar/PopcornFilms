@@ -4,10 +4,10 @@ import { FcDislike, FcLike, FcRating, FcBookmark } from 'react-icons/fc';
 const DescriptionFilm = () => {
   return (
     <section className="section description_film">
-      <div class="wrapper">
+      <div className="wrapper">
         <img
           alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          src={require('../../img/test/images-1.jpg')}
           className="card_img"
         />
       </div>
