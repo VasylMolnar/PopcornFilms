@@ -1,21 +1,18 @@
 {
   "files": {
-    "main.css": "/PopcornFilms/static/css/main.1659478f.css",
-    "main.js": "/PopcornFilms/static/js/main.9a204caf.js",
+    "main.css": "/PopcornFilms/static/css/main.e7393479.css",
+    "main.js": "/PopcornFilms/static/js/main.e31024d1.js",
+    "static/media/Igor-480.jpg": "/PopcornFilms/static/media/Igor-480.20baa7dca2a5a81dc3b7.jpg",
     "static/media/images-3.jpg": "/PopcornFilms/static/media/images-3.432347c8a5eac64d3512.jpg",
     "static/media/images-1.jpg": "/PopcornFilms/static/media/images-1.bfedf0a374d7498ad00e.jpg",
     "static/media/images.jpg": "/PopcornFilms/static/media/images.8306a28325a4b4b41d39.jpg",
     "static/media/images-2.jpg": "/PopcornFilms/static/media/images-2.547ce4db1da583c7231b.jpg",
-    "static/media/slick.svg": "/PopcornFilms/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/PopcornFilms/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/PopcornFilms/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/PopcornFilms/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/PopcornFilms/index.html",
-    "main.1659478f.css.map": "/PopcornFilms/static/css/main.1659478f.css.map",
-    "main.9a204caf.js.map": "/PopcornFilms/static/js/main.9a204caf.js.map"
+    "main.e7393479.css.map": "/PopcornFilms/static/css/main.e7393479.css.map",
+    "main.e31024d1.js.map": "/PopcornFilms/static/js/main.e31024d1.js.map"
   },
   "entrypoints": [
-    "static/css/main.1659478f.css",
-    "static/js/main.9a204caf.js"
+    "static/css/main.e7393479.css",
+    "static/js/main.e31024d1.js"
   ]
 }
