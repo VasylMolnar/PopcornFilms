@@ -51,7 +51,7 @@ const Login = () => {
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  Зареєструватися
+                  Вхід
                 </button>
               </div>
             </form>

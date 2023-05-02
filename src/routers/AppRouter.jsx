@@ -6,6 +6,7 @@ import Categories from '../pages/Categories';
 import Chosen from '../pages/Chosen';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import CurrentFilm from '../pages/CurrentFilm';
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,11 @@ const AppRouter = () => {
         {/*AUTH*/}
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+
+        {/*CURRENT FILM*/}
+        <Route path="film">
+          <Route path=":id" element={<CurrentFilm />} />
+        </Route>
 
         <Route path="*" element={<Missing />} />
       </Route>

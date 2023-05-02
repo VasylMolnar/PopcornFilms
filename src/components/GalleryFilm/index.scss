@@ -1,0 +1,19 @@
+.galleryFilm {
+  .ant-carousel .slick-dots-bottom {
+    bottom: -52px;
+  }
+
+  .slick-slide[data-index] {
+    width: 230px !important;
+  }
+
+  .card_img {
+    width: 150px;
+    height: 200px;
+
+    @media screen and (min-width: $tablet) {
+      width: 200px;
+      height: 300px;
+    }
+  }
+}

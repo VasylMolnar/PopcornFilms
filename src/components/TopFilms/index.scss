@@ -7,9 +7,15 @@
     }
   }
 
+  .ant-card {
+    transform: scale(1);
+    transition: all 300ms linear;
+  }
+
   .ant-card:hover {
     transform: scale(1.05);
     border: 3px solid #c6343e;
+    transition: all 170ms linear;
   }
   .content {
     display: flex;
