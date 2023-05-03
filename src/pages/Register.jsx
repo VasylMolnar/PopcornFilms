@@ -13,7 +13,7 @@ const Register = () => {
 
   const handleRegister = async values => {
     Loading.dots('');
-
+    console.log(values);
     try {
       await register(values);
       Loading.remove();
