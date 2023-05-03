@@ -17,7 +17,7 @@ const Register = () => {
     try {
       await register(values);
       Loading.remove();
-      Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
+      //Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
     } catch (e) {
       console.log(e);
       Loading.remove();
