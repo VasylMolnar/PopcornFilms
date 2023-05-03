@@ -23,11 +23,6 @@ const Nav = ({ openMenu }) => {
               Обране
             </NavLink>
           </li>
-          <li className="item">
-            <NavLink to="/userPage" className="nav__link">
-              test UserPage
-            </NavLink>
-          </li>
         </ul>
       </nav>
 

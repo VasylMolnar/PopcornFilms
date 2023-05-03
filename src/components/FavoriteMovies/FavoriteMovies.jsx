@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 
 const FavoriteMovies = () => {
   return (
-    <Card sx={{ maxWidth: 215 }}>
+    <Card sx={{ maxWidth: 275 }}>
       <CardActionArea>
         <CardMedia
           component="img"
