@@ -3,15 +3,39 @@ import { userRegisterSchema } from '../utils/validationSchema';
 import { useNavigate } from 'react-router-dom';
 import { Formik, FastField, ErrorMessage } from 'formik';
 import { Report, Loading } from 'notiflix';
+import { useRegisterMutation } from '../features/auth/authApiSlice';
 
 const Register = () => {
-  const handleRegister = () => {};
+  const navigate = useNavigate();
+
+  //fn API
+  const [register] = useRegisterMutation();
+
+  const handleRegister = async values => {
+    Loading.dots('');
+
+    try {
+      await register(values);
+      Loading.remove();
+      Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
+    } catch (e) {
+      console.log(e);
+      Loading.remove();
+      Report.failure(`Реєстрація невдала.`, `${e}`);
+    }
+  };
 
   return (
     <main className="section register">
       <div className="container">
         <Formik
-          initialValues={{ username: '', email: '', password: '' }}
+          initialValues={{
+            name: '',
+            surname: '',
+            description: 'Hello',
+            email: '',
+            password: '',
+          }}
           onSubmit={handleRegister}
           validationSchema={userRegisterSchema}
         >
@@ -22,9 +46,20 @@ const Register = () => {
               <label className="label">
                 <p>Ваше імя</p>
 
-                <FastField type="email" name="username" placeholder="Ваше імя:" />
+                <FastField type="text" name="name" placeholder="Ваше імя:" />
                 <ErrorMessage
-                  name="username"
+                  name="name"
+                  component="div"
+                  style={{ color: 'red', textTransform: 'upperCase' }}
+                />
+              </label>
+
+              <label className="label">
+                <p>Ваше прізвіще</p>
+
+                <FastField type="text" name="surname" placeholder="Ваше прізвіще:" />
+                <ErrorMessage
+                  name="surname"
                   component="div"
                   style={{ color: 'red', textTransform: 'upperCase' }}
                 />
