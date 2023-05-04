@@ -18,8 +18,6 @@ const AppRouter = () => {
         <Route index element={<Home />} />
         <Route path="categories" element={<Categories />} />
 
-        <Route path="chosen" element={<Chosen />} />
-
         {/*AUTH*/}
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
@@ -30,6 +28,9 @@ const AppRouter = () => {
         </Route>
 
         {/* private routes */}
+        {/* Chosen Film  */}
+        <Route path="chosen" element={<Chosen />} />
+
         {/*USER*/}
         <Route path="userPage">
           {/* User routes */}

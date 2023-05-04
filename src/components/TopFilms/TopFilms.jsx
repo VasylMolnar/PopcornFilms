@@ -10,8 +10,8 @@ const TopFilms = () => {
       <h1 className="title">Топ фільмів</h1>
 
       <div className="content">
-        {a.map(item => (
-          <FilmCard item={item} />
+        {a.map((item, index) => (
+          <FilmCard item={item} key={index} />
         ))}
       </div>
     </section>

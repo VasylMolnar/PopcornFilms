@@ -12,16 +12,27 @@ const Register = () => {
   const [register] = useRegisterMutation();
 
   const handleRegister = async values => {
-    Loading.dots('');
-    console.log(values);
-    try {
-      await register(values);
+    Loading.dots('Реєстрація');
+
+    const response = await register(values);
+
+    if (
+      response.error.status === 201 ||
+      response.error.status === 200 ||
+      response.error.status === 'PARSING_ERROR'
+    ) {
+      setTimeout(() => {
+        Loading.remove();
+
+        Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
+        navigate('/login');
+      }, 500);
+    } else {
       Loading.remove();
-      //Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
-    } catch (e) {
-      console.log(e);
-      Loading.remove();
-      Report.failure(`Реєстрація невдала.`, `${e}`);
+      Report.failure(
+        `Реєстрація невдала! CODE:${response.error.status}`,
+        `${response.error.data.message}`
+      );
     }
   };
 

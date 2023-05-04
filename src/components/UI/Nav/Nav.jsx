@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCurrentToken } from '../../../features/auth/authSlice';
 
 const Nav = ({ openMenu }) => {
+  const isAuth = useSelector(selectCurrentToken);
+
   return (
     <div className={openMenu ? 'nav-menu isOpen' : 'nav-menu'}>
       <nav className="nav__bar">
@@ -26,19 +30,29 @@ const Nav = ({ openMenu }) => {
         </ul>
       </nav>
 
-      <ul className="nav__info">
-        <li className="item">
-          <NavLink to="/register" className="nav__link">
-            Реєстрація
-          </NavLink>
-        </li>
+      {isAuth ? (
+        <ul className="nav__info">
+          <li className="item">
+            <NavLink to="/userPage" className="nav__link enter">
+              Вхід
+            </NavLink>
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav__info">
+          <li className="item">
+            <NavLink to="/register" className="nav__link">
+              Реєстрація
+            </NavLink>
+          </li>
 
-        <li className="item">
-          <NavLink to="/login" className="nav__link enter">
-            Вхід
-          </NavLink>
-        </li>
-      </ul>
+          <li className="item">
+            <NavLink to="/login" className="nav__link enter">
+              Вхід
+            </NavLink>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };

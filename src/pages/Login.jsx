@@ -1,9 +1,44 @@
 import React from 'react';
 import { Formik, FastField, ErrorMessage } from 'formik';
 import { userLoginSchema } from '../utils/validationSchema';
+import { useNavigate } from 'react-router';
+import { useLogInMutation } from '../features/auth/authApiSlice';
+import { Report, Loading } from 'notiflix';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../features/auth/authSlice';
 
 const Login = () => {
-  const handleLogIn = () => {};
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //fn Api
+  const [logIn] = useLogInMutation();
+
+  const handleLogIn = async values => {
+    Loading.dots('Вхід у обліковий запис');
+
+    const response = await logIn(values);
+
+    if (response.data) {
+      const accessToken = response.data.accessToken;
+      // console.log(response);
+      const userId = response.data.userId;
+      const role = response.data.userRole;
+
+      setTimeout(() => {
+        setTimeout(() => {
+          dispatch(setCredentials({ accessToken, userId, role }));
+          Loading.remove();
+
+          Report.success('Вітаємо.', 'Приємного користування 😀');
+          navigate('/userPage');
+        }, 500);
+      }, 300);
+    } else {
+      Loading.remove();
+      Report.failure(`CODE:${response.error.status}`, `${response.error.data.message}`);
+    }
+  };
 
   return (
     <main className="section login">
