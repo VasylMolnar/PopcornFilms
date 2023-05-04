@@ -20,7 +20,7 @@ let UserCard = ({ item }) => {
     Loading.dots('Видалення користувача ... ');
 
     const confirmDelete = window.confirm('Підтвердити видалення.');
-
+    //test git
     console.log(userId);
     if (confirmDelete) {
       await deleteUser({ userId })
