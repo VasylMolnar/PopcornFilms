@@ -8,7 +8,7 @@ import Register from '../pages/Register';
 import Login from '../pages/Login';
 import CurrentFilm from '../pages/CurrentFilm';
 import UserPage from '../pages/Users/UserPage';
-// import UsersList from '../pages/Users/UsersList';
+import RequireAuth from '../components/RequireAuth/RequireAuth';
 
 const AppRouter = () => {
   return (
@@ -27,20 +27,16 @@ const AppRouter = () => {
           <Route path=":id" element={<CurrentFilm />} />
         </Route>
 
-        {/* private routes */}
         {/* Chosen Film  */}
         <Route path="chosen" element={<Chosen />} />
 
-        {/*USER*/}
-        <Route path="userPage">
-          {/* User routes */}
-          <Route index element={<UserPage />} />
-
-          {/* Admin routes  ******************************** verify if Admin*/}
-          {/* <Route path="userList">
-            <Route index element={<UsersList />} />
-            <Route path=":id" ex element={<UsersList />} />
-          </Route> */}
+        {/* private routes */}
+        <Route element={<RequireAuth />}>
+          {/*USER*/}
+          <Route path="userPage">
+            {/* User routes */}
+            <Route index element={<UserPage />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<Missing />} />
