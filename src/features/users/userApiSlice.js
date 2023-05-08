@@ -3,7 +3,7 @@ import { apiSlice } from '../../app/api/apiSlice';
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     //Get User Data by User Email
-    getUserByEmail: builder.query({
+    getUserById: builder.query({
       query: userId => ({
         url: `/users/${userId}`,
         method: 'get',
@@ -27,6 +27,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
+    //for admin
     deleteUser: builder.mutation({
       query: ({ userId }) => ({
         url: `/users/${userId}`,
@@ -34,16 +35,30 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: { userId },
       }),
 
-      invalidatesTags: (result, error, arg) => {
-        console.log(result);
-        if (result.roles.includes('5150')) {
-          //Admin
-          return [{ type: 'Users', id: arg.id }];
-        }
-      },
+      invalidatesTags: ['Users'],
+    }),
+
+    deleteCurrentUsers: builder.mutation({
+      query: () => ({
+        url: `/users`,
+        method: 'delete',
+      }),
+    }),
+
+    updateCurrentUsers: builder.mutation({
+      query: credentials => ({
+        url: `/users`,
+        method: 'put',
+        body: { ...credentials },
+      }),
     }),
   }),
 });
 
-export const { useGetUserByEmailQuery, useGetAllUsersQuery, useDeleteUserMutation } =
-  userApiSlice;
+export const {
+  useGetUserByIdQuery,
+  useGetAllUsersQuery,
+  useDeleteUserMutation,
+  useDeleteCurrentUsersMutation,
+  useUpdateCurrentUsersMutation,
+} = userApiSlice;

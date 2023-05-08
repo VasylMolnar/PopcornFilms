@@ -10,16 +10,13 @@ import { logOut, setCredentials } from '../../features/auth/authSlice';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:8080/api',
-  // credentials: 'include', //fetch should send and get cookies and HTTP authorization headers from SERVER (WEB security) check client send data to our server
+  credentials: 'include', //fetch should send and get cookies and HTTP authorization headers from SERVER (WEB security) check client send data to our server
   //1
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken; //or we can use useSelector
-    const roles = getState().auth.roles;
 
-    //console.log("token",token);
     if (token) {
-      headers.set('authorization', `Bearer ${token}`);
-      headers.set('roles', [roles]);
+      headers.set('authorization', `Bearer ${token}`); //Authorization
     }
 
     return headers;
@@ -54,9 +51,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-
   baseQuery: baseQueryWithReauth,
-  mode: 'no-cors',
   tagTypes: ['Users'], //to save data cache
   endpoints: builder => ({}),
 });

@@ -1,5 +1,4 @@
 import { useState, React } from 'react';
-import allowedRoles from '../../utils/roles_list';
 import { Formik, FastField, ErrorMessage } from 'formik';
 import { userRegisterSchema } from '../../utils/validationSchema';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +8,7 @@ import {
   selectCurrentUserId,
   selectCurrentUserRole,
 } from '../../features/auth/authSlice';
-import { useGetUserByEmailQuery } from '../../features/users/userApiSlice';
+import { useGetUserByIdQuery } from '../../features/users/userApiSlice';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -18,6 +17,10 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Report, Loading, Notify } from 'notiflix';
 import UsersList from './UsersList';
+import {
+  useDeleteCurrentUsersMutation,
+  useUpdateCurrentUsersMutation,
+} from '../../features/users/userApiSlice';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -28,12 +31,52 @@ const UserPage = () => {
   const userId = useSelector(selectCurrentUserId);
   const currentRole = useSelector(selectCurrentUserRole);
 
+  //fn Api
+
+  const [deleteUser] = useDeleteCurrentUsersMutation();
+  const [updateUser] = useUpdateCurrentUsersMutation();
+
   //Get User Data by User Email
-  const { data, isLoading, isSuccess, isError, error } = useGetUserByEmailQuery(userId);
+  const { data, isLoading, isSuccess, isError, error } = useGetUserByIdQuery(userId);
 
-  const handleChange = async values => {};
+  const handleChange = async values => {
+    Loading.dots('Оновлення даних ... ');
 
-  const handleDelete = async () => {};
+    const updateData = await updateUser({ ...values, id: userId, description: 'Hello' });
+    !updateData?.error
+      ? setTimeout(() => {
+          Loading.remove();
+          Report.success('Користувача було оновлено', '');
+        }, 500)
+      : setTimeout(() => {
+          Loading.remove();
+          Report.failure(updateData.error.data.message || 'Помилка оновлення', '');
+        }, 500);
+  };
+
+  const handleDelete = async () => {
+    Loading.dots('Видалення ваших даних ... ');
+
+    const confirmDelete = window.confirm('Підтвердити видалення.');
+
+    if (confirmDelete) {
+      console.log(userId);
+
+      await deleteUser({ userId })
+        .then(data => {
+          dispatch(logOut());
+          Loading.remove();
+          Report.success('Користувача було видалено', '');
+        })
+        .catch(error => {
+          Loading.remove();
+          Report.failure(error || 'Помилка видалення', '');
+        });
+    } else {
+      Loading.remove();
+      Report.info('Видалення скасовано', '');
+    }
+  };
 
   const handleLogOut = async () => {
     dispatch(logOut());
@@ -89,7 +132,7 @@ const UserPage = () => {
                   name: data.name,
                   surname: data.surname,
                   email: data.email,
-                  password: data.password || '*******',
+                  password: data.password || '***********',
                 }} //select data from server
                 onSubmit={handleChange}
                 validationSchema={userRegisterSchema}
@@ -136,7 +179,7 @@ const UserPage = () => {
                     <label className="label">
                       <AccountCircleIcon className="icon" />
 
-                      <FastField type="text" name="surname" placeholder="Імя:" />
+                      <FastField type="text" name="surname" placeholder="Прізвіще:" />
                       <ErrorMessage
                         name="surname"
                         component="div"

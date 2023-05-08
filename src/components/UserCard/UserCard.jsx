@@ -1,10 +1,7 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useDeleteUserMutation } from '../../features/users/userApiSlice';
-
 import { Avatar, Card } from 'antd';
 import { Loading, Report } from 'notiflix';
-import { FcApproval, FcExpired } from 'react-icons/fc';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useNavigate } from 'react-router';
@@ -20,8 +17,7 @@ let UserCard = ({ item }) => {
     Loading.dots('Видалення користувача ... ');
 
     const confirmDelete = window.confirm('Підтвердити видалення.');
-    //test git
-    console.log(userId);
+
     if (confirmDelete) {
       await deleteUser({ userId })
         .then(data => {

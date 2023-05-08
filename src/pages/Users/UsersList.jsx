@@ -1,9 +1,7 @@
 import React from 'react';
 import { useGetAllUsersQuery } from '../../features/users/userApiSlice';
-import { useSelector } from 'react-redux';
 import { Report, Loading } from 'notiflix';
 import UserCard from '../../components/UserCard/UserCard';
-import { useParams } from 'react-router-dom';
 
 const UsersList = () => {
   //for admin page User list

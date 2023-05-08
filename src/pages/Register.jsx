@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, FastField, ErrorMessage } from 'formik';
 import { Report, Loading } from 'notiflix';
 import { useRegisterMutation } from '../features/auth/authApiSlice';
+import { useSelector } from 'react-redux';
 
 const Register = () => {
   const navigate = useNavigate();
+  const role = useSelector(state => state.auth.role);
 
   //fn API
   const [register] = useRegisterMutation();
@@ -25,7 +27,7 @@ const Register = () => {
         Loading.remove();
 
         Report.success('Реєстрація успішна.', 'Можете увійти до свого обл. запису');
-        navigate('/login');
+        role === 'Admin' ? navigate('/userPage') : navigate('/login');
       }, 500);
     } else {
       Loading.remove();
