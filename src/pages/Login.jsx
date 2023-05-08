@@ -24,6 +24,7 @@ const Login = () => {
       // console.log(response);
       const userId = response.data.userId;
       const role = response.data.userRole;
+      sessionStorage.setItem('password', values.password);
 
       setTimeout(() => {
         setTimeout(() => {

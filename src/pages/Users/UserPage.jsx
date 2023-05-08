@@ -132,7 +132,8 @@ const UserPage = () => {
                   name: data.name,
                   surname: data.surname,
                   email: data.email,
-                  password: data.password || '***********',
+                  password:
+                    data.password || sessionStorage.getItem('password') || '***********',
                 }} //select data from server
                 onSubmit={handleChange}
                 validationSchema={userRegisterSchema}

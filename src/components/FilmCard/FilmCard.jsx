@@ -9,37 +9,51 @@ const FilmCard = ({ item }) => {
   const id = 1;
 
   return (
-    <Link to={`film/${id}`}>
-      <Card
-        hoverable
-        style={{
-          width: 270,
-          height: 400,
-        }}
-        cover={
-          <img
-            alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            className="card_img"
+    <Link to={`film/${item.id}`}>
+      <div className="content_card">
+        <div>
+          <Card
+            hoverable
+            style={{
+              width: 270,
+              height: 404,
+            }}
+            cover={
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={item.title}
+                className="card_img"
+                width="270"
+                height="300"
+              />
+            }
           />
-        }
-      >
-        <div className="description">
-          <Meta title="Назва фільму" />
-
-          <div className="rating">
-            <p style={{ margin: 0 }}>7.5</p>
-            <StarBorderIcon />
-          </div>
         </div>
 
-        <button
-          className="btn btn-outline-danger"
-          style={{ width: '100%', borderRadius: '20px', marginTop: '110px' }}
-        >
-          Обране
-        </button>
-      </Card>
+        <div className="description">
+          <div>
+            <Meta title={item.title} />
+            <p>Дата релізу: {item.release_date} </p>
+
+            <p>Перегляди: {item.popularity} </p>
+            <p>Мова: {item.original_language} </p>
+
+            <div className="rating">
+              <p style={{ margin: 0 }}>Рейтинг: {item.vote_average}</p>
+              <StarBorderIcon />
+              <StarBorderIcon />
+              <StarBorderIcon />
+            </div>
+          </div>
+
+          <button
+            className="btn btn-outline-danger"
+            style={{ width: '100%', borderRadius: '20px' }}
+          >
+            Обране
+          </button>
+        </div>
+      </div>
     </Link>
   );
 };
