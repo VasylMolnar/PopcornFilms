@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import CurrentFilm from '../pages/CurrentFilm';
 import UserPage from '../pages/Users/UserPage';
 import RequireAuth from '../components/RequireAuth/RequireAuth';
+import ChosenList from '../pages/ChosenList';
 
 const AppRouter = () => {
   return (
@@ -29,6 +30,10 @@ const AppRouter = () => {
 
         {/* Chosen Film  */}
         <Route path="chosen" element={<Chosen />} />
+
+        {/* Chosen List Films  */}
+
+        <Route path="list" element={<ChosenList />} />
 
         {/* private routes */}
         <Route element={<RequireAuth />}>

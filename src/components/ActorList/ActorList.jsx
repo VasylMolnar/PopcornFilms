@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'antd';
+import { useGetMovieCreditsQuery } from '../../features/films/filmsApiSlice';
 
 const settings = {
   width: '300px',
@@ -11,38 +12,33 @@ const settings = {
   autoplaySpeed: 2000, // set autoplay interval in milliseconds
 };
 
-const ActorList = () => {
+const ActorList = ({ id, name }) => {
+  const { data, isLoading, isSuccess, isError, error } = useGetMovieCreditsQuery({
+    movieId: id,
+    info: name,
+  });
+
   return (
     <section className="section galleryFilm">
       <h1 className="title">Актори</h1>
       <Carousel {...settings}>
-        <div>
-          <img src={require('../../img/test/images-1.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images-2.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images-3.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images-2.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images-3.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images-3.jpg')} alt="" className="card_img" />
-        </div>
-        <div>
-          <img src={require('../../img/test/images.jpg')} alt="" className="card_img" />
-        </div>
+        {isSuccess &&
+          !isError &&
+          data.cast.map((item, index) => (
+            <div className="content" key={index}>
+              <img
+                key={item.profile_path}
+                src={`https://image.tmdb.org/t/p/w300${item.profile_path}`}
+                alt={item.profile_path}
+              />
+
+              <div className="descriptions">
+                <p>{item.original_name}</p>
+                <p>У фільмі: {item.character}</p>
+                <p>Підписники: {item.popularity}</p>
+              </div>
+            </div>
+          ))}
       </Carousel>
     </section>
   );

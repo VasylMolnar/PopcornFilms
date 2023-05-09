@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 const FilmCard = ({ item, info }) => {
   return (
-    <Link to={`film/${item.id}?name=${info}`}>
+    <Link to={`/film/${item.id}?name=${info}`}>
       <div className="content_card">
         <div>
           <Card

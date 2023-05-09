@@ -26,13 +26,6 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
       }),
     }),
 
-    getMovieCredits: builder.query({
-      query: ({ movieId }) => ({
-        url: `/movie/${movieId}/credits${filter}`,
-        method: 'GET',
-      }),
-    }),
-
     getMovieDetails: builder.query({
       //info == movie, serial, coming
       query: ({ movieId, info }) => ({
@@ -49,6 +42,20 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
       }),
     }),
 
+    getMovieCredits: builder.query({
+      query: ({ movieId, info }) => ({
+        url: `/${info}/${movieId}/credits${filter}`,
+        method: 'GET',
+      }),
+    }),
+
+    getAllFilms: builder.query({
+      query: ({ info, page }) => ({
+        url: `/discover/${info}${filter}&page=${page}`,
+        method: 'GET',
+      }),
+    }),
+
     getMovieReviews: builder.query({
       query: ({ movieId }) => ({
         url: `/movie/${movieId}/reviews${filter}&language=en-US&page=1`,
@@ -57,8 +64,8 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
     }),
 
     getSearchMovies: builder.query({
-      query: ({ query, page = 1 }) => ({
-        url: `/search/movie${filter}&query=${query}&language=en-US&page=${page}&include_adult=false`,
+      query: ({ info, query }) => ({
+        url: `/search/${info}${filter}&query=${query}`,
         method: 'GET',
       }),
     }),
@@ -74,4 +81,5 @@ export const {
   useGetGalleryDetailsQuery,
   useGetMovieReviewsQuery,
   useGetSearchMoviesQuery,
+  useGetAllFilmsQuery,
 } = filmsApiSlice;

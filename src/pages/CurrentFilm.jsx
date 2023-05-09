@@ -21,7 +21,7 @@ const CurrentFilm = () => {
         <GalleryFilm id={id} name={name} />
 
         {/*ACTOR LIST */}
-        <ActorList />
+        <ActorList id={id} name={name} />
 
         {/* Comments */}
         <Comments />
