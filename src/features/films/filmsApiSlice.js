@@ -12,16 +12,39 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
       }),
     }),
 
+    getSerials: builder.query({
+      query: () => ({
+        url: `/trending/tv/day${filter}`,
+        method: 'GET',
+      }),
+    }),
+
+    getUpcoming: builder.query({
+      query: () => ({
+        url: `/movie/upcoming${filter}`,
+        method: 'GET',
+      }),
+    }),
+
     getMovieCredits: builder.query({
       query: ({ movieId }) => ({
-        url: `/movie/${movieId}/credits${filter}&language=en-US`,
+        url: `/movie/${movieId}/credits${filter}`,
         method: 'GET',
       }),
     }),
 
     getMovieDetails: builder.query({
-      query: ({ movieId }) => ({
-        url: `/movie/${movieId}${filter}&language=en-US`,
+      //info == movie, serial, coming
+      query: ({ movieId, info }) => ({
+        url: `/${info}/${movieId}${filter}`,
+        method: 'GET',
+      }),
+    }),
+
+    getGalleryDetails: builder.query({
+      //info == movie, serial, coming
+      query: ({ movieId, info }) => ({
+        url: `/${info}/${movieId}/images${filter}`,
         method: 'GET',
       }),
     }),
@@ -44,8 +67,11 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
 
 export const {
   useGetTrendingQuery,
+  useGetSerialsQuery,
+  useGetUpcomingQuery,
   useGetMovieCreditsQuery,
   useGetMovieDetailsQuery,
+  useGetGalleryDetailsQuery,
   useGetMovieReviewsQuery,
   useGetSearchMoviesQuery,
 } = filmsApiSlice;

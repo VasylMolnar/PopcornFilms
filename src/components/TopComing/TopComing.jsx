@@ -1,15 +1,16 @@
 import React from 'react';
 import FilmCard from '../FilmCard/FilmCard';
-import { useGetTrendingQuery } from '../../features/films/filmsApiSlice.js';
+import { useGetUpcomingQuery } from '../../features/films/filmsApiSlice.js';
 import { Report, Loading } from 'notiflix';
 
-const TopFilms = () => {
+const TopComing = () => {
   //fetch topFilm from server
-  const { data, isLoading, isSuccess, isError, error } = useGetTrendingQuery();
+  const { data, isLoading, isSuccess, isError, error } = useGetUpcomingQuery();
 
   return (
     <section className="section topFilms">
-      <h1 className="title">Топ фільмів</h1>
+      <h1 className="title">Незабаром</h1>
+
       {isLoading ? Loading.dots('Завантаження') : Loading.remove(300)}
       {error && (Report.failure('Error', `${error.data}`), Loading.remove())}
 
@@ -24,4 +25,4 @@ const TopFilms = () => {
   );
 };
 
-export default TopFilms;
+export default TopComing;

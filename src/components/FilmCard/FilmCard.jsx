@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 
-const FilmCard = ({ item }) => {
-  const id = 1;
-
+const FilmCard = ({ item, info }) => {
   return (
-    <Link to={`film/${item.id}`}>
+    <Link to={`film/${item.id}?name=${info}`}>
       <div className="content_card">
         <div>
           <Card
@@ -32,8 +30,8 @@ const FilmCard = ({ item }) => {
 
         <div className="description">
           <div>
-            <Meta title={item.title} />
-            <p>Дата релізу: {item.release_date} </p>
+            <Meta title={item.title || item.name} />
+            <p>Дата релізу: {item.release_date || item.first_air_date} </p>
 
             <p>Перегляди: {item.popularity} </p>
             <p>Мова: {item.original_language} </p>
