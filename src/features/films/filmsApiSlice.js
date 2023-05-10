@@ -83,6 +83,13 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+
+    getOscars: builder.query({
+      query: () => ({
+        url: `/discover/movie${filter}&sort_by=popularity.desc&with_original_language=en&vote_average.gte=7&vote_count.gte=500&with_awards=true`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -98,4 +105,5 @@ export const {
   useGetAllFilmsQuery,
   useGetCategoriesMoviesQuery,
   useGetAllFilmsByGenresQuery,
+  useGetOscarsQuery,
 } = filmsApiSlice;

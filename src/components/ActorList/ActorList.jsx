@@ -12,7 +12,7 @@ const settings = {
   autoplaySpeed: 2000, // set autoplay interval in milliseconds
 };
 
-const ActorList = ({ id, name }) => {
+const ActorList = ({ id, name, year = '' }) => {
   const { data, isLoading, isSuccess, isError, error } = useGetMovieCreditsQuery({
     movieId: id,
     info: name,
@@ -20,7 +20,13 @@ const ActorList = ({ id, name }) => {
 
   return (
     <section className="section galleryFilm">
-      <h1 className="title">Актори</h1>
+      {year ? (
+        <h1 className="title" style={{ paddingTop: '0px' }}>
+          Переможні оскара {year} році
+        </h1>
+      ) : (
+        <h1 className="title">Актори</h1>
+      )}
       <Carousel {...settings}>
         {isSuccess &&
           !isError &&

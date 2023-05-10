@@ -10,6 +10,7 @@ import CurrentFilm from '../pages/CurrentFilm';
 import UserPage from '../pages/Users/UserPage';
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import ChosenList from '../pages/ChosenList';
+import OscarsPage from '../pages/OscarsPage';
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
         {/* public routes */}
         <Route index element={<Home />} />
         <Route path="categories" element={<Categories />} />
+        <Route path="oscar" element={<OscarsPage />} />
 
         {/*AUTH*/}
         <Route path="register" element={<Register />} />
