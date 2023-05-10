@@ -6,11 +6,21 @@ import Textarea from '@mui/joy/Textarea';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-
-import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
 import MoodIcon from '@mui/icons-material/Mood';
+import { useParams, useLocation, useNavigate } from 'react-router';
+import { useGetMovieReviewsQuery } from '../../features/films/filmsApiSlice';
 
 const Comments = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get('name');
+
+  const { data, isLoading, isSuccess, isError, error } = useGetMovieReviewsQuery({
+    info: name || 'movie',
+    movieId: id,
+  });
+
   const handleComment = e => {
     e.preventDefault();
     console.log(e.target.elements.comments.value);
@@ -47,7 +57,7 @@ const Comments = () => {
         />
       </FormControl>
 
-      {a.map((comment, index) => (
+      {/* {a.map((comment, index) => (
         <div className="comment" key={index} style={{ marginTop: '30px' }}>
           <div className="wrapper">
             <img
@@ -73,7 +83,34 @@ const Comments = () => {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
+
+      {isSuccess &&
+        !isError &&
+        data?.results?.map((comment, index) => (
+          <div className="comment" key={index} style={{ marginTop: '30px' }}>
+            <div className="wrapper">
+              <img
+                alt="example"
+                src={`https://image.tmdb.org/t/p/w300${comment.author_details.avatar_path}`}
+                className="card_img"
+              />
+            </div>
+
+            <div className="content">
+              <p>Автор: {comment.author}</p>
+              <p>Опубліковано: {comment.created_at}</p>
+              <p>{comment.content}</p>
+
+              <div className="icons">
+                <ThumbUpAltIcon className="icon" />
+                <ThumbDownIcon className="icon" />
+                <SentimentVeryDissatisfiedIcon className="icon" />
+                <MoodIcon className="icon" />
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

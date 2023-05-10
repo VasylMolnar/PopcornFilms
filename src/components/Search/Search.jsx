@@ -3,7 +3,6 @@ import Input from '../UI/Input/Input';
 import { debounce } from 'lodash';
 import { FcSearch } from 'react-icons/fc';
 import { useGetSearchMoviesQuery } from '../../features/films/filmsApiSlice';
-import { Report, Loading } from 'notiflix';
 import { useParams, useLocation, useNavigate } from 'react-router';
 import FilmCard from '../FilmCard/FilmCard';
 
@@ -19,7 +18,7 @@ const Search = () => {
   });
 
   return (
-    <>
+    <div className="search_content">
       <form
         className="search"
         onSubmit={e => {
@@ -44,10 +43,10 @@ const Search = () => {
 
       <div className="content" style={{ marginTop: '30px' }}>
         {data?.results?.map((item, index) => (
-          <FilmCard item={item} key={index} info={name} />
+          <FilmCard item={item} key={index} info={name || 'movie' || 'tv'} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

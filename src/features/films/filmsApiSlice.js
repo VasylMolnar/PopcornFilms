@@ -56,9 +56,16 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
       }),
     }),
 
+    getAllFilmsByGenres: builder.query({
+      query: ({ genreId }) => ({
+        url: `/discover/movie${filter}&with_genres=${genreId}`,
+        method: 'GET',
+      }),
+    }),
+
     getMovieReviews: builder.query({
-      query: ({ movieId }) => ({
-        url: `/movie/${movieId}/reviews${filter}&language=en-US&page=1`,
+      query: ({ info, movieId }) => ({
+        url: `/${info}/${movieId}/reviews${filter}&language=en-US&page=1`,
         method: 'GET',
       }),
     }),
@@ -66,6 +73,13 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
     getSearchMovies: builder.query({
       query: ({ info, query }) => ({
         url: `/search/${info}${filter}&query=${query}`,
+        method: 'GET',
+      }),
+    }),
+
+    getCategoriesMovies: builder.query({
+      query: () => ({
+        url: `/genre/movie/list${filter}`,
         method: 'GET',
       }),
     }),
@@ -82,4 +96,6 @@ export const {
   useGetMovieReviewsQuery,
   useGetSearchMoviesQuery,
   useGetAllFilmsQuery,
+  useGetCategoriesMoviesQuery,
+  useGetAllFilmsByGenresQuery,
 } = filmsApiSlice;

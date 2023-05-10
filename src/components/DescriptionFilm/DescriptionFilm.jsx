@@ -70,8 +70,10 @@ const DescriptionFilm = ({ id, name }) => {
                 alignItems: 'center',
               }}
             >
-              {data.spoken_languages.map(language => (
-                <p style={{ marginRight: '30px' }}>{language.name}</p>
+              {data.spoken_languages.map((language, index) => (
+                <p style={{ marginRight: '30px' }} key={index}>
+                  {language.name}
+                </p>
               ))}
             </div>
 
@@ -83,8 +85,10 @@ const DescriptionFilm = ({ id, name }) => {
                 alignItems: 'center',
               }}
             >
-              {data.production_countries.map(countrie => (
-                <p style={{ marginRight: '30px' }}>{countrie.name}</p>
+              {data.production_countries.map((countrie, index) => (
+                <p style={{ marginRight: '30px' }} key={index}>
+                  {countrie.name}
+                </p>
               ))}
             </div>
 
