@@ -32,7 +32,6 @@ const UserPage = () => {
   const currentRole = useSelector(selectCurrentUserRole);
 
   //fn Api
-
   const [deleteUser] = useDeleteCurrentUsersMutation();
   const [updateUser] = useUpdateCurrentUsersMutation();
 
@@ -232,7 +231,10 @@ const UserPage = () => {
           {currentRole === 'ADMIN' && <UsersList />}
         </div>
       )}
-      {isError && (Report.warning(`Увійдіть до свого обл. запису`, ''), navigate('/'))}
+      {isError &&
+        (Report.warning(`Увійдіть до свого обл. запису`, ''),
+        navigate('/'),
+        window.location.reload())}
     </main>
   );
 };

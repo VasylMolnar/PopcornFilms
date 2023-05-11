@@ -1,4 +1,3 @@
-import { result } from 'lodash';
 import { apiSlice } from '../../app/api/apiSlice';
 
 /*

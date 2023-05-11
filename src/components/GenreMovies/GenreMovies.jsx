@@ -21,10 +21,6 @@ const GenreMovies = ({ genreId, genre }) => {
     genreId,
   });
 
-  if (isSuccess) {
-    console.log(data);
-  }
-
   return (
     <div className="section genre_movie">
       {isLoading ? Loading.dots('Завантаження') : Loading.remove(300)}

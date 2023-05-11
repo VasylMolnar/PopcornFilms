@@ -3,7 +3,6 @@ import { useGetCategoriesMoviesQuery } from '../features/films/filmsApiSlice';
 import { Report, Loading } from 'notiflix';
 import Search from '../components/Search/Search';
 import GenreMovies from '../components/GenreMovies/GenreMovies';
-import Oscars from '../components/Oscars/Oscars';
 
 const Categories = () => {
   const { data, isLoading, isSuccess, error } = useGetCategoriesMoviesQuery();
