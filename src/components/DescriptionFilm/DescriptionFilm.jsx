@@ -1,16 +1,34 @@
 import React from 'react';
 import { useGetMovieDetailsQuery } from '../../features/films/filmsApiSlice';
 import { Report, Loading } from 'notiflix';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import CheckIcon from '@mui/icons-material/Check';
+import { useAddToSelectedMutation } from '../../features/selectedMovies/selectedMoviesApiSlice';
 
 const DescriptionFilm = ({ id, name }) => {
   const { data, isLoading, isSuccess, isError, error } = useGetMovieDetailsQuery({
     movieId: id,
     info: name,
   });
+
+  //fn Api
+  const [addToList] = useAddToSelectedMutation();
+
+  const addReactions = async (filmApiId, status) => {
+    Loading.circle();
+
+    await addToList({ filmApiId, status })
+      .then(data => {
+        Loading.remove();
+        Report.success('Додано в Обране', '');
+      })
+      .catch(error => {
+        Loading.remove();
+        Report.failure(error || 'Помилка', '');
+      });
+  };
 
   return (
     <section className="section description_film">
@@ -49,16 +67,28 @@ const DescriptionFilm = ({ id, name }) => {
 
             <div className="reactions">
               <div className="iconBorder">
-                <FavoriteIcon className="icon" />
+                <CheckIcon
+                  className="icon"
+                  onClick={() => addReactions(data.id, 'WATCHED')}
+                />
               </div>
               <div className="iconBorder">
-                <ThumbUpIcon className="icon" />
+                <ThumbUpIcon
+                  className="icon"
+                  onClick={() => addReactions(data.id, 'FAVOURITE')}
+                />
               </div>
               <div className="iconBorder">
-                <ThumbDownAltIcon className="icon" />
+                <ThumbDownAltIcon
+                  className="icon"
+                  onClick={() => addReactions(data.id, 'DISLIKED')}
+                />
               </div>
               <div className="iconBorder">
-                <BookmarkIcon className="icon" />
+                <BookmarkIcon
+                  className="icon"
+                  onClick={() => addReactions(data.id, 'WATCH_LATER')}
+                />
               </div>
             </div>
 

@@ -4,10 +4,10 @@ export const selectedMoviesApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     //add movie to selected list
     addToSelected: builder.mutation({
-      query: id => ({
-        url: '/api/films',
+      query: ({ filmApiId, status }) => ({
+        url: `/films/${filmApiId}/add-to-saved?status=${status}`,
         method: 'POST',
-        body: { apiTitleId: id },
+        body: { apiTitleId: filmApiId },
       }),
 
       invalidatesTags: ['SaveFilm'],
@@ -16,7 +16,7 @@ export const selectedMoviesApiSlice = apiSlice.injectEndpoints({
     //delete Current Movie from list
     deleteCurrent: builder.mutation({
       query: id => ({
-        url: `/api/films${id}`,
+        url: `/films${id}`,
         method: 'DELETE',
         body: { apiTitleId: id },
       }),
@@ -26,23 +26,18 @@ export const selectedMoviesApiSlice = apiSlice.injectEndpoints({
 
     //get all Selected list
     getSelectedFavorite: builder.query({
-      query: () => ({
-        url: '/api/films/get-saved?status=FAVOURITE',
+      query: ({ status }) => ({
+        url: `/films/get-saved?status=${status}`,
         method: 'GET',
       }),
 
-      // transformResponse: response => {
-      //   console.log('response', response);
-      // },
-
-      // providesTags: (result, error, arg) => {
-      //   console.log(result, arg, error);
-      //   return [
-      //     ...result.map(item => {
-      //       return { type: 'SaveFilm', id: item.id };
-      //     }),
-      //   ];
-      // },
+      providesTags: (result, error, arg) => {
+        return [
+          ...result.map(item => {
+            return { type: 'SaveFilm', id: item.id };
+          }),
+        ];
+      },
     }),
   }),
 });

@@ -3,19 +3,18 @@ import { useGetSelectedFavoriteQuery } from '../../features/selectedMovies/selec
 import { Report, Loading } from 'notiflix';
 import { CardStatus } from '../CardStatus/CardStatus';
 
-const FavoriteMovies = () => {
+const WatchedMovies = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetSelectedFavoriteQuery({
-    status: 'FAVOURITE',
+    status: 'WATCHED',
   });
 
   return (
     <>
       {isLoading ? Loading.dots('Завантаження') : Loading.remove(300)}
       {error && (Report.failure('Error', `${error.data}`), Loading.remove())}
-
       {isSuccess && data?.map(item => <CardStatus id={item.apiTitleId} key={item.key} />)}
     </>
   );
 };
 
-export default FavoriteMovies;
+export default WatchedMovies;

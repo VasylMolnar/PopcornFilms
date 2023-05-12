@@ -3,9 +3,9 @@ import { useGetSelectedFavoriteQuery } from '../../features/selectedMovies/selec
 import { Report, Loading } from 'notiflix';
 import { CardStatus } from '../CardStatus/CardStatus';
 
-const FavoriteMovies = () => {
+const DislikedMovies = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetSelectedFavoriteQuery({
-    status: 'FAVOURITE',
+    status: 'DISLIKED',
   });
 
   return (
@@ -18,4 +18,4 @@ const FavoriteMovies = () => {
   );
 };
 
-export default FavoriteMovies;
+export default DislikedMovies;

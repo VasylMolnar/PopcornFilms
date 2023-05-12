@@ -90,6 +90,14 @@ export const filmsApiSlice = apiFilmSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+
+    getMovieById: builder.query({
+      //info == movie, serial, coming
+      query: ({ movieId, info }) => ({
+        url: `/${info}/${movieId}${filter}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -106,4 +114,5 @@ export const {
   useGetCategoriesMoviesQuery,
   useGetAllFilmsByGenresQuery,
   useGetOscarsQuery,
+  useGetMovieByIdQuery,
 } = filmsApiSlice;
