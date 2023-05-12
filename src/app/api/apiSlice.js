@@ -16,7 +16,9 @@ export const baseQuery = fetchBaseQuery({
     const token = getState().auth.accessToken; //or we can use useSelector
 
     if (token) {
+      console.log('token', token);
       headers.set('authorization', `Bearer ${token}`); //Authorization
+      console.log('headers', headers.get('authorization'));
     }
 
     return headers;
