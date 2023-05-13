@@ -1,15 +1,14 @@
 import { apiSlice } from '../../app/api/apiSlice';
 
-export const selectedMoviesApiSlice = apiSlice.injectEndpoints({
+export const commentApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    //add movie to selected list
-    addToSelected: builder.mutation({
-      query: ({ filmApiId, status }) => ({
-        url: `/films/${filmApiId}/add-to-saved?status=${status}`,
+    //add comment to movie
+    addComment: builder.mutation({
+      query: ({ filmApiId, text }) => ({
+        url: `/film-comments?film_id=${filmApiId}`,
         method: 'POST',
-        body: { apiTitleId: filmApiId },
+        body: { id: filmApiId, text },
       }),
-
       invalidatesTags: ['SaveFilm'],
     }),
 
@@ -37,7 +36,7 @@ export const selectedMoviesApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useAddToSelectedMutation,
+  useAddCommentMutation,
   useDeleteCurrentMutation,
   useGetSelectedFavoriteQuery,
-} = selectedMoviesApiSlice;
+} = commentApiSlice;

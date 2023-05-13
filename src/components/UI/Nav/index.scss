@@ -78,11 +78,11 @@
     }
 
     &.active {
-      color: $background;
+      color: #c6343e;
     }
 
     &:hover {
-      color: $background;
+      color: #c6343e;
     }
 
     &.active::after {
@@ -95,7 +95,8 @@
       width: 100%;
       height: 4px;
       margin-top: 8px;
-      background-color: $background;
+      background-color: #f6e8ea;
+
       background-size: auto;
       border-radius: 2px;
 

@@ -9,8 +9,12 @@ import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDiss
 import MoodIcon from '@mui/icons-material/Mood';
 import { useParams, useLocation, useNavigate } from 'react-router';
 import { useGetMovieReviewsQuery } from '../../features/films/filmsApiSlice';
+import { useAddCommentMutation } from '../../features/comment/commentApiSlice';
+import { Report, Loading } from 'notiflix';
+import { useSelector } from 'react-redux';
 
 const Comments = () => {
+  const isAuth = useSelector(state => state.auth.accessToken);
   const { id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -21,9 +25,27 @@ const Comments = () => {
     movieId: id,
   });
 
-  const handleComment = e => {
+  //fn Api
+  const [addComment] = useAddCommentMutation();
+
+  const sendComment = async e => {
     e.preventDefault();
-    console.log(e.target.elements.comments.value);
+    Loading.circle();
+
+    if (isAuth) {
+      await addComment({ filmApiId: id, text: e.target.elements.comments.value })
+        .then(data => {
+          Loading.remove();
+          Report.success('Коментар відправлено', '');
+        })
+        .catch(error => {
+          Loading.remove();
+          Report.failure(error || 'Помилка', '');
+        });
+    } else {
+      Report.info('Увійдіть до облікового запису', 'Щоб могти зберегти фільм');
+      Loading.remove();
+    }
   };
 
   const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //test only
@@ -33,7 +55,7 @@ const Comments = () => {
       <h1 className="title" style={{ marginTop: '100px' }}>
         Коментарі
       </h1>
-      <FormControl component="form" onSubmit={handleComment}>
+      <FormControl component="form" onSubmit={sendComment}>
         <Textarea
           name="comments"
           placeholder="Ваш коментарь..."

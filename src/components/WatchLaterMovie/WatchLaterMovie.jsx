@@ -13,7 +13,10 @@ const WatchLaterMovie = () => {
       {isLoading ? Loading.dots('Завантаження') : Loading.remove(300)}
       {error && (Report.failure('Error', `${error.data}`), Loading.remove())}
 
-      {isSuccess && data?.map(item => <CardStatus id={item.apiTitleId} key={item.key} />)}
+      {isSuccess &&
+        data?.map(item => (
+          <CardStatus id={item.apiTitleId} key={item.key} status="WATCH_LATER" />
+        ))}
     </>
   );
 };

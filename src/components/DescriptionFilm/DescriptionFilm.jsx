@@ -6,8 +6,11 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CheckIcon from '@mui/icons-material/Check';
 import { useAddToSelectedMutation } from '../../features/selectedMovies/selectedMoviesApiSlice';
+import { useSelector } from 'react-redux';
 
 const DescriptionFilm = ({ id, name }) => {
+  const isAuth = useSelector(state => state.auth.accessToken);
+
   const { data, isLoading, isSuccess, isError, error } = useGetMovieDetailsQuery({
     movieId: id,
     info: name,
@@ -19,15 +22,20 @@ const DescriptionFilm = ({ id, name }) => {
   const addReactions = async (filmApiId, status) => {
     Loading.circle();
 
-    await addToList({ filmApiId, status })
-      .then(data => {
-        Loading.remove();
-        Report.success('Додано в Обране', '');
-      })
-      .catch(error => {
-        Loading.remove();
-        Report.failure(error || 'Помилка', '');
-      });
+    if (isAuth) {
+      await addToList({ filmApiId, status })
+        .then(data => {
+          Loading.remove();
+          Report.success('Додано в Обране', '');
+        })
+        .catch(error => {
+          Loading.remove();
+          Report.failure(error || 'Помилка', '');
+        });
+    } else {
+      Report.info('Увійдіть до облікового запису', 'Щоб могти зберегти фільм');
+      Loading.remove();
+    }
   };
 
   return (

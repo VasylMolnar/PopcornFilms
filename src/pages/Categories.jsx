@@ -17,7 +17,9 @@ const Categories = () => {
 
         {isSuccess &&
           data.genres.length > 0 &&
-          data.genres.map(genre => <GenreMovies genreId={genre.id} genre={genre.name} />)}
+          data.genres.map(genre => (
+            <GenreMovies genreId={genre.id} genre={genre.name} key={genre.id} />
+          ))}
       </div>
     </main>
   );
