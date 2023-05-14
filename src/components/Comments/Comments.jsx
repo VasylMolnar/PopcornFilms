@@ -9,9 +9,14 @@ import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDiss
 import MoodIcon from '@mui/icons-material/Mood';
 import { useParams, useLocation, useNavigate } from 'react-router';
 import { useGetMovieReviewsQuery } from '../../features/films/filmsApiSlice';
-import { useAddCommentMutation } from '../../features/comment/commentApiSlice';
+import {
+  useAddCommentMutation,
+  useGetAllFilmsQuery,
+} from '../../features/comment/commentApiSlice';
 import { Report, Loading } from 'notiflix';
 import { useSelector } from 'react-redux';
+import { useSorterFilmById } from '../../hooks/useSorterFilmById';
+import { MyComments } from '../MyComments/MyComments';
 
 const Comments = () => {
   const isAuth = useSelector(state => state.auth.accessToken);
@@ -24,6 +29,15 @@ const Comments = () => {
     info: name || 'movie',
     movieId: id,
   });
+
+  const {
+    data: idsFilms,
+    isLoading: idFilmsLoading,
+    isSuccess: idFilmsSuccess,
+    error: idFilmsError,
+  } = useGetAllFilmsQuery();
+
+  const currentFilmsIds = useSorterFilmById(idsFilms, id);
 
   //fn Api
   const [addComment] = useAddCommentMutation();
@@ -48,10 +62,14 @@ const Comments = () => {
     }
   };
 
-  const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //test only
-
   return (
     <div className="comment_List">
+      {isLoading || idFilmsLoading ? Loading.dots('Завантаження') : Loading.remove(300)}
+      {error ||
+        (idFilmsError &&
+          (Report.failure('Error', `${error.data} || ${idFilmsError.data}`),
+          Loading.remove()))}
+
       <h1 className="title" style={{ marginTop: '100px' }}>
         Коментарі
       </h1>
@@ -79,33 +97,9 @@ const Comments = () => {
         />
       </FormControl>
 
-      {/* {a.map((comment, index) => (
-        <div className="comment" key={index} style={{ marginTop: '30px' }}>
-          <div className="wrapper">
-            <img
-              alt="example"
-              src={require('../../img/team/Igor-480.jpg')}
-              className="card_img"
-            />
-          </div>
-
-          <div className="content">
-            <p>
-              COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST
-              COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST
-              COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST
-              COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST COMMENTS TEST
-            </p>
-
-            <div className="icons">
-              <ThumbUpAltIcon className="icon" />
-              <ThumbDownIcon className="icon" />
-              <SentimentVeryDissatisfiedIcon className="icon" />
-              <MoodIcon className="icon" />
-            </div>
-          </div>
-        </div>
-      ))} */}
+      {idFilmsSuccess &&
+        currentFilmsIds.length > 0 &&
+        currentFilmsIds.map(item => <MyComments id={item.id} />)}
 
       {isSuccess &&
         !isError &&
@@ -124,12 +118,12 @@ const Comments = () => {
               <p>Опубліковано: {comment.created_at}</p>
               <p>{comment.content}</p>
 
-              <div className="icons">
+              {/* <div className="icons">
                 <ThumbUpAltIcon className="icon" />
                 <ThumbDownIcon className="icon" />
                 <SentimentVeryDissatisfiedIcon className="icon" />
                 <MoodIcon className="icon" />
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

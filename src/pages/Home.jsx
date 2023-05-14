@@ -6,8 +6,6 @@ import TopComing from '../components/TopComing/TopComing';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  //sellect data from server
-
   return (
     <main className="section home">
       <div className="container">

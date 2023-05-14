@@ -2,41 +2,52 @@ import { apiSlice } from '../../app/api/apiSlice';
 
 export const commentApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    //add comment to movie
+    //add Comment to movie
     addComment: builder.mutation({
       query: ({ filmApiId, text }) => ({
         url: `/film-comments?film_id=${filmApiId}`,
         method: 'POST',
         body: { id: filmApiId, text },
       }),
-      invalidatesTags: ['SaveFilm'],
+
+      invalidatesTags: ['Comment'],
     }),
 
-    //delete Current Movie from list
-    deleteCurrent: builder.mutation({
-      query: ({ filmApiId, status }) => ({
-        url: `/films/${filmApiId}/remove-from-saved?status=${status}`,
+    //delete Current Comment
+    deleteCurrentComment: builder.mutation({
+      query: ({ filmApiId }) => ({
+        url: `/film-comments/${filmApiId}`,
         method: 'DELETE',
         body: { apiTitleId: filmApiId },
       }),
 
-      invalidatesTags: ['SaveFilm'],
+      invalidatesTags: ['Comment'],
     }),
 
-    //get all Selected list
-    getSelectedFavorite: builder.query({
-      query: ({ status }) => ({
-        url: `/films/get-saved?status=${status}`,
+    //get all Comment by FILM ID
+    getComment: builder.query({
+      query: ({ filmApiId }) => ({
+        url: `/film-comments?film_id=${filmApiId}`,
         method: 'GET',
       }),
 
-      providesTags: ['SaveFilm'],
+      providesTags: ['Comment'],
+    }),
+
+    getAllFilms: builder.query({
+      query: () => ({
+        url: `/films`,
+        method: 'GET',
+      }),
+
+      providesTags: ['Comment'],
     }),
   }),
 });
 
 export const {
   useAddCommentMutation,
-  useDeleteCurrentMutation,
-  useGetSelectedFavoriteQuery,
+  useDeleteCurrentCommentMutation,
+  useGetCommentQuery,
+  useGetAllFilmsQuery,
 } = commentApiSlice;
