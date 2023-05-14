@@ -99,7 +99,7 @@ const Comments = () => {
 
       {idFilmsSuccess &&
         currentFilmsIds.length > 0 &&
-        currentFilmsIds.map(item => <MyComments id={item.id} />)}
+        currentFilmsIds?.map(item => <MyComments id={item.id} />)}
 
       {isSuccess &&
         !isError &&

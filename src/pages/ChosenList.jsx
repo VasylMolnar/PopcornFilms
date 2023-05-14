@@ -33,7 +33,7 @@ const ChosenList = () => {
               ))}
 
               <button
-                className="btn btn-outline-primary"
+                className="btn btn-outline-danger"
                 onClick={() => {
                   Loading.dots('Завантаження');
                   setPage(prev => (prev -= 1));
@@ -50,7 +50,7 @@ const ChosenList = () => {
                 Попередня
               </button>
               <button
-                className="btn btn-outline-primary"
+                className="btn btn-outline-danger"
                 onClick={() => {
                   Loading.dots('Завантаження');
                   setPage(prev => (prev += 1));
