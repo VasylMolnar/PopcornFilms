@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useGetCommentQuery } from '../../features/comment/commentApiSlice';
 import { Report, Loading } from 'notiflix';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -16,6 +16,7 @@ export const MyComments = ({ id }) => {
     filmApiId: id,
   });
 
+  //fn Api
   const [deleteCurrentComment] = useDeleteCurrentCommentMutation();
 
   const deleteComment = async filmApiId => {
@@ -46,16 +47,9 @@ export const MyComments = ({ id }) => {
             </div>
 
             <div className="content">
-              <p>Автор: {comment.author}</p>
+              <p>Автор:{sessionStorage.getItem('nameUser')} </p>
               <p>Опубліковано: {date}</p>
               <p>{comment.text}</p>
-
-              {/* <div className="icons">
-                <ThumbUpAltIcon className="icon" />
-                <ThumbDownIcon className="icon" />
-                <SentimentVeryDissatisfiedIcon className="icon" />
-                <MoodIcon className="icon" />
-              </div> */}
             </div>
 
             <button

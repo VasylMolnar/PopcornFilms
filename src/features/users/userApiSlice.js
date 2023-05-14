@@ -12,6 +12,15 @@ export const userApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Users'],
     }),
 
+    getUserByIdMutation: builder.mutation({
+      query: userId => ({
+        url: `/users/${userId}`,
+        method: 'get',
+      }),
+
+      providesTags: ['Users'],
+    }),
+
     //for admin
     getAllUsers: builder.query({
       query: () => ({
@@ -59,6 +68,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetUserByIdMutationMutation,
   useGetUserByIdQuery,
   useGetAllUsersQuery,
   useDeleteUserMutation,

@@ -85,6 +85,10 @@ const UserPage = () => {
 
   const changeImage = async (e, folder) => {};
 
+  if (isSuccess) {
+    sessionStorage.setItem('nameUser', data.name);
+  }
+
   return (
     <main className="section userPage">
       {isSuccess && (
