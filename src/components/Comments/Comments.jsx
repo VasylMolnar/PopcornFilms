@@ -76,7 +76,7 @@ const Comments = () => {
       <FormControl component="form" onSubmit={sendComment}>
         <Textarea
           name="comments"
-          placeholder="Ваш коментарь..."
+          placeholder="Ваш коментар ..."
           minRows={3}
           endDecorator={
             <Box
@@ -89,7 +89,11 @@ const Comments = () => {
                 flex: 'auto',
               }}
             >
-              <Button sx={{ ml: 'auto' }} type="submit">
+              <Button
+                sx={{ ml: 'auto' }}
+                type="submit"
+                style={{ backgroundColor: '#c6343e' }}
+              >
                 Надіслати
               </Button>
             </Box>
