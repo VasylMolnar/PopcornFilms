@@ -22,7 +22,7 @@ const ActorList = ({ id, name, year = '' }) => {
     <section className="section galleryFilm">
       {year ? (
         <h1 className="title" style={{ paddingTop: '0px' }}>
-          Переможні оскара {year} році
+          Переможці оскара {year} році
         </h1>
       ) : (
         <h1 className="title">Актори</h1>

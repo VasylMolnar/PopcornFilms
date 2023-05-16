@@ -1,5 +1,5 @@
 import { apiFilmSlice } from '../../app/api/apiFilmSlice';
-const key = '0baefad249c96589623f521e924011c5';
+const key = 'add key';
 const filter = `?api_key=${key}`;
 
 export const filmsApiSlice = apiFilmSlice.injectEndpoints({

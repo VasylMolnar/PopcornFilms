@@ -38,7 +38,11 @@ const Nav = ({ openMenu }) => {
       {isAuth ? (
         <ul className="nav__info">
           <li className="item">
-            <NavLink to="/userPage" className="nav__link enter">
+            <NavLink
+              to="/userPage"
+              className="nav__link enter"
+              style={{ color: 'white' }}
+            >
               Вхід
             </NavLink>
           </li>
@@ -52,7 +56,7 @@ const Nav = ({ openMenu }) => {
           </li>
 
           <li className="item">
-            <NavLink to="/login" className="nav__link enter">
+            <NavLink to="/login" className="nav__link enter" style={{ color: 'white' }}>
               Вхід
             </NavLink>
           </li>
