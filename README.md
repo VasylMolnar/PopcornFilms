@@ -2,7 +2,8 @@
 
 [![Назва відео](https://img.youtube.com/vi/<[URL-адреса-відео](https://drive.google.com/file/d/1T8rwXqryEZHEIwvaLFitjuWeWsUefTHX/view?usp=drive_link)>/0.jpg)](https://www.youtube.com/watch?v=<URL-адреса-відео>)
 
-
+(https://www.youtube.com/watch?v=<https://drive.google.com/file/d/1T8rwXqryEZHEIwvaLFitjuWeWsUefTHX/view?usp=drive_link
+>)
 
 # Getting Started with Create React App
 
