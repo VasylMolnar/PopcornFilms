@@ -1,6 +1,6 @@
 # PopcornFilms
 
-[([https://img.youtube.com/vi/<URL-адреса-відео>/0.jpg](https://drive.google.com/drive/u/0/folders/1pcxrEX2Abc74DfpGEODlowMuRW48Er4C))]
+[https://drive.google.com/drive/u/0/folders/1pcxrEX2Abc74DfpGEODlowMuRW48Er4C]
 
 
 # Getting Started with Create React App
