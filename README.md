@@ -1,6 +1,6 @@
 # PopcornFilms
 
-[Назва відео](https://drive.google.com/file/d/1T8rwXqryEZHEIwvaLFitjuWeWsUefTHX/view?usp=drive_link)
+[Відео](https://drive.google.com/file/d/1T8rwXqryEZHEIwvaLFitjuWeWsUefTHX/view?usp=drive_link)
 
 
 
